@@ -6,16 +6,18 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2022"
+      "es2022",
+      "dom.iterable"
     ],
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "module": "esnext",
     "target": "es2022",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "jsxFragmentFactory": "h.Fragment"
+    "jsxFragmentFactory": "h.Fragment",
+    "skipLibCheck": true
   },
   "include": [
     "src"
