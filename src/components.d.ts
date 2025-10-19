@@ -6,18 +6,65 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AppButton {
+        /**
+          * @default 'primary'
+         */
+        "type": 'primary' | 'secondary';
+    }
+    interface AppCard {
+        "title": string;
+    }
+    interface AppModal {
+        /**
+          * @default false
+         */
+        "open": boolean;
+    }
+    interface LoadingComponent {
+    }
     interface MyComponent {
         /**
           * @default 'Guest'
          */
         "name": string;
     }
+    interface TaskManager {
+    }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLMyComponentElement;
 }
+export interface TaskManagerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTaskManagerElement;
+}
 declare global {
+    interface HTMLAppButtonElement extends Components.AppButton, HTMLStencilElement {
+    }
+    var HTMLAppButtonElement: {
+        prototype: HTMLAppButtonElement;
+        new (): HTMLAppButtonElement;
+    };
+    interface HTMLAppCardElement extends Components.AppCard, HTMLStencilElement {
+    }
+    var HTMLAppCardElement: {
+        prototype: HTMLAppCardElement;
+        new (): HTMLAppCardElement;
+    };
+    interface HTMLAppModalElement extends Components.AppModal, HTMLStencilElement {
+    }
+    var HTMLAppModalElement: {
+        prototype: HTMLAppModalElement;
+        new (): HTMLAppModalElement;
+    };
+    interface HTMLLoadingComponentElement extends Components.LoadingComponent, HTMLStencilElement {
+    }
+    var HTMLLoadingComponentElement: {
+        prototype: HTMLLoadingComponentElement;
+        new (): HTMLLoadingComponentElement;
+    };
     interface HTMLMyComponentElementEventMap {
         "nameChanged": string;
     }
@@ -35,11 +82,50 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLTaskManagerElementEventMap {
+        "taskAdded": string;
+    }
+    interface HTMLTaskManagerElement extends Components.TaskManager, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLTaskManagerElementEventMap>(type: K, listener: (this: HTMLTaskManagerElement, ev: TaskManagerCustomEvent<HTMLTaskManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLTaskManagerElementEventMap>(type: K, listener: (this: HTMLTaskManagerElement, ev: TaskManagerCustomEvent<HTMLTaskManagerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLTaskManagerElement: {
+        prototype: HTMLTaskManagerElement;
+        new (): HTMLTaskManagerElement;
+    };
     interface HTMLElementTagNameMap {
+        "app-button": HTMLAppButtonElement;
+        "app-card": HTMLAppCardElement;
+        "app-modal": HTMLAppModalElement;
+        "loading-component": HTMLLoadingComponentElement;
         "my-component": HTMLMyComponentElement;
+        "task-manager": HTMLTaskManagerElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppButton {
+        /**
+          * @default 'primary'
+         */
+        "type"?: 'primary' | 'secondary';
+    }
+    interface AppCard {
+        "title"?: string;
+    }
+    interface AppModal {
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+    }
+    interface LoadingComponent {
+    }
     interface MyComponent {
         /**
           * @default 'Guest'
@@ -47,15 +133,28 @@ declare namespace LocalJSX {
         "name"?: string;
         "onNameChanged"?: (event: MyComponentCustomEvent<string>) => void;
     }
+    interface TaskManager {
+        "onTaskAdded"?: (event: TaskManagerCustomEvent<string>) => void;
+    }
     interface IntrinsicElements {
+        "app-button": AppButton;
+        "app-card": AppCard;
+        "app-modal": AppModal;
+        "loading-component": LoadingComponent;
         "my-component": MyComponent;
+        "task-manager": TaskManager;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-button": LocalJSX.AppButton & JSXBase.HTMLAttributes<HTMLAppButtonElement>;
+            "app-card": LocalJSX.AppCard & JSXBase.HTMLAttributes<HTMLAppCardElement>;
+            "app-modal": LocalJSX.AppModal & JSXBase.HTMLAttributes<HTMLAppModalElement>;
+            "loading-component": LocalJSX.LoadingComponent & JSXBase.HTMLAttributes<HTMLLoadingComponentElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "task-manager": LocalJSX.TaskManager & JSXBase.HTMLAttributes<HTMLTaskManagerElement>;
         }
     }
 }

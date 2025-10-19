@@ -1,0 +1,7 @@
+dist
+www
+node_modules
+build
+loader
+*.d.ts
+package-lock.json

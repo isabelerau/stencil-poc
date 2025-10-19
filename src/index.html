@@ -16,5 +16,22 @@
         console.log('Name changed:', e.detail);
       });
     </script>
+    <loading-component></loading-component>
+    <task-manager></task-manager>
+    <app-card title="Produto">
+      <p>Valor R$ 19,90</p>
+      <app-button type="primary" id="buyButton">Comprar Agora</app-button>
+      <app-modal id="confirmModal">
+        <p>Confirmar compra?</p>
+      </app-modal>
+    </app-card>
+    <script>
+      const buyButton = document.querySelector('#buyButton');
+      const modal = document.querySelector('#confirmModal');
+      
+      buyButton.addEventListener('click', () => {
+        modal.open = true;
+      });
+    </script>
   </body>
 </html>
