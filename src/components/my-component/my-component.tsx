@@ -1,5 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, Prop, h, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -7,26 +6,21 @@ import { format } from '../../utils/utils';
   shadow: true,
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+  @Prop() name: string = 'Guest';
+  @State() inputValue: string = '';
+  @Event() nameChanged: EventEmitter<string>;
+  handleInput(e: Event) {
+    this.inputValue = (e.target as HTMLInputElement).value;
+    this.nameChanged.emit(this.inputValue);
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return (
+      <div class="container">
+        <h1>Hello, {this.name}!</h1>
+        <input type="text" value={this.inputValue} onInput={e => this.handleInput(e)} placeholder="Enter name" />
+      </div>
+    );
   }
 }
+

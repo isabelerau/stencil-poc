@@ -1,3 +1,19 @@
-:host {
-  display: block;
+.container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h1 {
+  color: #007bff;
+}
+button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
 }

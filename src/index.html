@@ -9,6 +9,12 @@
     <script nomodule src="/build/stencil-poc.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <my-component name="Isabele"></my-component>
+    <script>
+      const component = document.querySelector('my-component');
+      component.addEventListener('nameChanged', e => {
+        console.log('Name changed:', e.detail);
+      });
+    </script>
   </body>
 </html>
